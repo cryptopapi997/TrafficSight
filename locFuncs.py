@@ -13,7 +13,6 @@ class LocationHandler():
 
     def get_location(self):
         # Get current location in case we didn't receive one
-        # TODO: Rewrite this in JS to use html5 locationing for more accuracy
         return geocoder.ip('me')
 
     # Every 5 location "steps" fetch our direction by getting the difference in latitude and

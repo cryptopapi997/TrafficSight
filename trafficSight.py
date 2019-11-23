@@ -1,10 +1,9 @@
 from flask import Flask, request, jsonify, render_template
 from locFuncs import LocationHandler
+import vision
 
 global loc
 global app
-
-# TODO: Obs ne ampel gibt und welche farbe + Auto
 
 
 def create_app():
@@ -18,18 +17,19 @@ def create_app():
     # Returns true if user is nearing an intersection
     @app.route('/get-location-info')
     def getLocationInfo():
-        location = request.args.get('location')
-        crossingIncoming = loc.do_locationing(location)
+        crossingIncoming = loc.do_locationing()
         response = {"crossing": crossingIncoming}
         return jsonify(response)
 
     @app.route('/get-image-data', methods=["POST"])
     def getImageData():
         req_data = request.get_json()
-        if req_data[1] is not None:
-            response = {"Received": True}
-            return jsonify(response)
-        response = {"Received": False}
+        if req_data is not None:
+            data = req_data.replace("data:image/webp;base64,", "")
+            response = vision.analyze_picture(data)
+        else:
+            response = {"Received": False}
+
         return jsonify(response)
     return app
 
