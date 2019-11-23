@@ -1,8 +1,4 @@
-<video autoplay style="display:none;"></video>
-<img src="" style="display:none;">
-<canvas style="display:none;"></canvas>
-
-<script>
+function record(){
 var constraints = { audio: true, video: { width: 1280, height: 720 } }; 
 
 const canvas = document.createElement('canvas');
@@ -30,3 +26,5 @@ video.onclick = function(){ clearInterval(inter);};
 
 })
 .catch(function(err) { console.log(err.name + ": " + err.message); });
+
+};
