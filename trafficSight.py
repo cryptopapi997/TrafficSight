@@ -30,8 +30,8 @@ def create_app():
             response = {"Received": True}
             return jsonify(response)
 
-        response = {"Received": True}
-
+        response = {"Received": False}
+        return jsonify(response)
     return app
 
 app = create_app()
