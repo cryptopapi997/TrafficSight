@@ -1,0 +1,73 @@
+@import url("something.css");
+body {
+	font-weight:Bold;
+	color: #123456;
+	background-color: #353535;
+  margin:0;
+	padding: 10% 15%;
+	font-family: tahoma, arial, sans-serif;
+}
+
+@media screen and (min-width: 480px) {
+	body {
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+		background-color: #353535;
+	}
+}
+
+.main{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template: 1fr / 1fr;
+  place-items: center;
+  position: relative;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin: 0%;
+  background-color: rgba(0,0,0,0.175)
+}
+.Upper{
+	flex: 1 1 auto;
+  text-align: center;
+}
+.Inner{
+  flex: 1 1 auto;
+  text-align: center;
+}
+h1 {
+    text-align: center;
+	font-size: 6em;
+	font-weight: Normal;
+    color: #27FFD4;
+}
+h2 {
+	font-size: 4em;
+    font-weight: Normal;
+    color: #27FFD4;
+}
+.hide{
+  display: none;
+}
+
+.Red{
+  text-align: center;
+	font-size: 6em;
+	font-weight: Normal;
+  color: #B2A70F;
+}
+.Green{
+  text-align: center;
+	font-size: 6em;
+	font-weight: Normal;
+  color: #DCFAFF;
+}
+.Scanner{
+    height: 10%;
+    top: 0;
+    position: absolute;
+    padding: 3%;
+    font-size: 3em;
+}
