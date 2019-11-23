@@ -21,12 +21,10 @@ $(document).ready(function(){
     // Other browsers will fall back to image/png
     img.src = canvas.toDataURL('image/webp');
 
-
-    var data = JSON.stringify({img:base64});
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:5000/",
-        data: data,
+        url: "http://127.0.0.1:5000/get-image-data",
+        data: JSON.stringify(img.src),
         dataType: "json",
         success: function (response) {
             alert(response); 
