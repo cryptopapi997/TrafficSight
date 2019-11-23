@@ -1,35 +1,56 @@
 $(document).ready(function(){
     var actualScreen = null;
-function record(){
-var constraints = { audio: true, video: { width: 1280, height: 720 } }; 
+    function record(){
+    var constraints = { audio: true, video: { width: 1280, height: 720 } }; 
 
-const canvas = document.createElement('canvas');
-const img = document.querySelector('img');
+    const canvas = document.createElement('canvas');
+    const img = document.querySelector('img');
 
-navigator.mediaDevices.getUserMedia(constraints)
-.then(function(mediaStream) {
-  var video = document.querySelector('video');
-  video.srcObject = mediaStream;
-  video.onloadedmetadata = function(e) {
-    video.play();
-  };
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then(function(mediaStream) {
+    var video = document.querySelector('video');
+    video.srcObject = mediaStream;
+    video.onloadedmetadata = function(e) {
+        video.play();
+    };
 
-screenshot = function(){
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-  canvas.getContext('2d').drawImage(video, 0, 0);
-  // Other browsers will fall back to image/png
-  img.src = canvas.toDataURL('image/webp');
-};
+    screenshot = function(){
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+    // Other browsers will fall back to image/png
+    img.src = canvas.toDataURL('image/webp');
+    };
 
-var inter = setInterval(screenshot, 200);
+    var inter = setInterval(screenshot, 200);
 
-video.onclick = function(){ clearInterval(inter);};
+    video.onclick = function(){ clearInterval(inter);};
 
-})
-.catch(function(err) { console.log(err.name + ": " + err.message); });
+    })
+    .catch(function(err) { console.log(err.name + ": " + err.message); });
 
-};
+    };
+
+
+    setInterval(function(){
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:5000/get-location-info",
+            data: "data",
+            dataType: "json",
+            success: function (response) {
+                var result = response;
+                //alert(result['crossing']);
+                if(result['crossing'] == true) 
+                    alert(result['crossing']);
+                
+                
+            }
+        });
+    }, 10000);
+
+
+
     $('.main').on('click', function(){
 
         if(actualScreen == null)
