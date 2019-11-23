@@ -26,7 +26,7 @@ def create_app():
     @app.route('/get-image-data', methods=["POST"])
     def getImageData():
         req_data = request.get_json()
-        if req_data["data"] is not None:
+        if req_data[1] is not None:
             response = {"Received": True}
             return jsonify(response)
         response = {"Received": False}

@@ -25,10 +25,14 @@ $(document).ready(function(){
         type: "POST",
         url: "http://127.0.0.1:5000/get-image-data",
         data: JSON.stringify(img.src),
+        contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
-            alert(response); 
-        }
+            console.log(JSON.stringify(response)); 
+        },
+        error: function () {
+            console.log('error post');
+          }
     });
 
     };
@@ -47,7 +51,6 @@ $(document).ready(function(){
         $.ajax({
             type: "GET",
             url: "http://127.0.0.1:5000/get-location-info",
-            data: "data",
             dataType: "json",
             success: function (response) {
                 var result = response;
