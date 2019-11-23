@@ -20,6 +20,19 @@ $(document).ready(function(){
     canvas.getContext('2d').drawImage(video, 0, 0);
     // Other browsers will fall back to image/png
     img.src = canvas.toDataURL('image/webp');
+
+
+    var data = JSON.stringify({img:base64});
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:5000/",
+        data: data,
+        dataType: "json",
+        success: function (response) {
+            alert(response); 
+        }
+    });
+
     };
 
     var inter = setInterval(screenshot, 200);
@@ -47,7 +60,7 @@ $(document).ready(function(){
                 
             }
         });
-    }, 500);
+    }, 10000);
 
 
 
