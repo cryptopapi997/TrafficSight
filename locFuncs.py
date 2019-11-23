@@ -44,7 +44,7 @@ class LocationHandler():
         else:
             return True
 
-    def get_street(self,lat, long):
+    def get_street(self):
         url = "https://atlas.microsoft.com/search/address/reverse/json?subscription-key=" + str(
             azureSubKey) + "&api-version=1.0&query=" + str(lat) + "," + str(long)
         re = requests.get(url, headers={'x-ms-client-id': azureClientId})
