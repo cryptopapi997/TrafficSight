@@ -24,7 +24,7 @@ $(document).ready(function(){
             // Other browsers will fall back to image/png
             img.src = canvas.toDataURL('image/webp');
 
-            var ms = 3000;
+            var ms = 4000;
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:5000/get-image-data",
@@ -32,9 +32,9 @@ $(document).ready(function(){
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {                     
-                    response[0] = false;
-                    response[1] = false;
-                    response[2] = false;
+                    //response[0] = false;
+                    //response[1] = false;
+                    //response[2] = false;
                     if(response[0] == true) {               
                         stopInter();
                         console.log('traffic light');
@@ -77,25 +77,21 @@ $(document).ready(function(){
                             stopInter();
                             $('.Scanning').addClass('hide');
                             $('.blank').addClass('hide');
-                            $('.NotFound').removeClass('hide');
+                            if(response[2] == true){
+                                console.log("cars")
+                                $('.Cars').removeClass('hide'); 
+                            }else{                               
+                                $('.NoCars').removeClass('hide'); 
+                            }
                             setTimeout(function(){
-                                $('.NotFound').addClass('hide');
-                                if(response[2] == true){
-                                    console.log("cars")
-                                    $('.Cars').removeClass('hide'); 
-                                }else{                               
-                                    $('.NoCars').removeClass('hide'); 
-                                }
-                                setTimeout(function(){
-                                    if(!$('.Cars').hasClass('hide')) 
-                                        $('.Cars').addClass('hide');
-                                    if(!$('.NoCars').hasClass('hide')) 
-                                        $('.NoCars').addClass('hide');
-                                    $('.home').removeClass('hide', click);
-                                    $('.main').on('click', click);  
-                                    actualScreen = $('.home');
-                                }, ms);
-                            }, ms);                           
+                                if(!$('.Cars').hasClass('hide')) 
+                                    $('.Cars').addClass('hide');
+                                if(!$('.NoCars').hasClass('hide')) 
+                                    $('.NoCars').addClass('hide');
+                                $('.home').removeClass('hide', click);
+                                $('.main').on('click', click);  
+                                actualScreen = $('.home');
+                            }, ms);                         
                         }
                         console.log('no traffic light');
                         i++;                
