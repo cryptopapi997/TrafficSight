@@ -1,30 +1,23 @@
-import requests
-from flask import Flask, request
-import locFuncs
+from flask import Flask, request, jsonify
+from locFuncs import LocationHandler
 
-app = Flask(__name__)
+global loc
+global app
 
-@app.route('/get-traffic-info')
-def getTrafficInfo():
+# TODO: Obs ne ampel gibt und welche farbe + Auto
+
+def create_app():
+    app = Flask(__name__)
+    loc = LocationHandler()
+
+# Returns true if user is nearing an intersection
+@app.route('/get-location-info')
+def getLocationInfo():
     location = request.args.get('location')
-    if not location is None:
+    crossingIncoming = loc.do_locationing(location)
+    response = {"crossing": crossingIncoming}
+    return jsonify(response)
 
-
-
-
-
-# Obs ne ampel gibt und welche farbe
-#Auto
-# Kreuzung
-
-
-
-
-direction_array = [None]*(5)
-
-for i in range(0,5):
-    direction_array[i] = get_location()
-
-latlong = get_direction(direction_array)
-incoming_intersection(latlong)
+#@app.route('/get-image-data')
+#def getImageData():
 
