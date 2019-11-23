@@ -21,7 +21,7 @@ class LocationHandler():
     def get_direction(self,direction_array):
         directionLat = 0
         directionLong = 0
-        for i in range(0, 4):
+        for i in range(0, 3):
             directionLat = directionLat + (direction_array[i].latlng[0] - direction_array[i - 1].latlng[0])
             directionLong = directionLong + (direction_array[i].latlng[1] - direction_array[i - 1].latlng[1])
         direction = [directionLat, directionLong]
