@@ -48,17 +48,25 @@ $(document).ready(function(){
 
 
     setInterval(function(){
+
+       function getLocation() {
+  	if (navigator.geolocation) {
+    		navigator.geolocation.getCurrentPosition(showPosition);
+  	} else { 
+    		x.innerHTML = "Geolocation is not supported by this browser.";
+  		}
+	}
+
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:5000/get-location-info",
+            url: "http://127.0.0.1:5000/get-location-info?lat='position.coords.latitude'&long='position.coords.longitude'",
+            data: "data",
             dataType: "json",
             success: function (response) {
                 var result = response;
                 //alert(result['crossing']);
                 if(result['crossing'] == true) 
                     alert(result['crossing']);
-                
-                
             }
         });
     }, 10000);
