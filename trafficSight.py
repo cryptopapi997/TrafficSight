@@ -23,13 +23,12 @@ def create_app():
         response = {"crossing": crossingIncoming}
         return jsonify(response)
 
-    @app.route('/get-image-data', methods=['POST'])
+    @app.route('/get-image-data', methods=["POST"])
     def getImageData():
-        image = request.args.get('image')
-        if image is not None:
+        req_data = request.get_json()
+        if req_data["data"] is not None:
             response = {"Received": True}
             return jsonify(response)
-
         response = {"Received": False}
         return jsonify(response)
     return app

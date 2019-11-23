@@ -4,7 +4,7 @@ subscription_key = "6684ad637c014c709a7568fcb2e2deff"
 endpoint = "https://trafficsihthackatum19.cognitiveservices.azure.com/"
 
 
-def analyze_picture(picture):
+def analyze_picture():
     #TODO: Convert pic to jpg
 
     return_dict = {"trafficLight": False,
@@ -13,7 +13,7 @@ def analyze_picture(picture):
 
     analyze_url = endpoint + "vision/v2.1/analyze"
 
-    image_path = "/Users/Gamer7000/Desktop/640100-3600x2700.jpg"
+    image_path = "/Users/Gamer7000/Desktop/Stop_Light_Wide.jpg"
 
     image_data = open(image_path, "rb").read()
 
@@ -32,6 +32,7 @@ def analyze_picture(picture):
                 return_dict["canCross"] = True
         if tag == "car" or tag == "bus":
             return_dict["cars"] = True
+
 
 analyze_picture()
 
