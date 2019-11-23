@@ -17,8 +17,7 @@ def create_app():
         location = request.args.get('location')
         crossingIncoming = loc.do_locationing(location)
         response = {"crossing": crossingIncoming}
-        return str(crossingIncoming)
-        # return jsonify(response)
+        return jsonify(response)
 
     # @app.route('/get-image-data')
     # def getImageData():
