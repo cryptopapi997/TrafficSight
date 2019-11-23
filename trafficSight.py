@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from locFuncs import LocationHandler
 
 global loc
@@ -8,8 +8,12 @@ global app
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder='FrontEnd')
     loc = LocationHandler()
+
+    @app.route("/")
+    def main():
+        return render_template("MainHTML.html")
 
     # Returns true if user is nearing an intersection
     @app.route('/get-location-info')
