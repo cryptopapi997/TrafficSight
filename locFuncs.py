@@ -2,8 +2,8 @@ import geocoder
 import requests
 import json
 
-azureClientId = "d252ac26-cb9f-4714-9386-d700d9f5f521"
-azureSubKey = "JudAesBBTOzxc9vmaZsLo5haaJhMwCX6OFSm5_E-eAk"
+azureClientId = "[YOUR CLIENT ID]"
+azureSubKey = "[YOUR KEY]"
 
 
 class LocationHandler():
@@ -44,7 +44,7 @@ class LocationHandler():
         else:
             return True
 
-    def get_street(self):
+    def get_street(self,lat,long):
         url = "https://atlas.microsoft.com/search/address/reverse/json?subscription-key=" + str(
             azureSubKey) + "&api-version=1.0&query=" + str(lat) + "," + str(long)
         re = requests.get(url, headers={'x-ms-client-id': azureClientId})
