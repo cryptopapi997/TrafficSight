@@ -10,4 +10,4 @@ Frontend:
 Pure JS written by [linus569](https://github.com/linus569) and [JulianBouchard](https://github.com/JulianBouchard)
 
 Backend:
-Python running within Flask framework making requests to Microsoft Azure written by [nschapeler](https://github.com/nschapeler)
+Python running within Flask framework making requests to Microsoft Azure written by [nschapeler](https://github.com/nschapeler) and Julien Schulz
